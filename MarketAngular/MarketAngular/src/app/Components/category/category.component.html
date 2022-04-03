@@ -1,0 +1,10 @@
+
+<ul class="list-group">
+    <li routerLink="/airplanes/" class="list-group-item">Tüm Kategoriler</li>
+    <li (click)="setCurrentCategory(kat)"
+    routerLink="airplanes/kat/{{kat.categoryId}}"
+     *ngFor="let kat of categories"
+    [class]="getCurrentCategoryClass(kat)">{{kat.categoryName}}</li>
+</ul>
+<br/>
+<h6 *ngIf="currentCat" class="alert-info" > {{currentCat.categoryName}} i seçtiniz </h6>

@@ -1,0 +1,45 @@
+<div *ngIf="dataLoaded==false" class="spinner-border text-success" role="status">
+    <span class="visually-hidden">Yükleniyor...</span>
+</div>
+
+<div class="mb-3">
+    <label for="filterText" class="form-label">Ürün Ara</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Arama ifadesi girin">
+</div>
+<div *ngIf="filterText" class="alert alert-primary">
+    <h6> {{filterText}} aradınız</h6>
+</div>
+
+<table *ngIf="dataLoaded==true" class="table border-danger table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Kategori</th>
+            <th>İsim</th>
+            <th>Marka</th>
+            <th>Model</th>
+            <th>Stok Adedi</th>
+            <th>Birim Fiyatı</th>
+            <th>KDV li fiyat</th>
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr *ngFor="let airplane of airplanes | filterPipe:filterText" >
+            <td> {{airplane.airplaneId}} </td>
+            <td> {{airplane.categoryId}} </td>
+            <td> {{airplane.airplaneName |uppercase}} </td>
+            <td> {{airplane.airplaneBrand}} </td>
+            <td> {{airplane.airplaneModel}} </td>
+            <td> {{airplane.unitsInStock}} </td>
+            <td> {{airplane.unitPrice|currency}} </td>
+            <td> {{airplane.unitPrice |vatAdded:18 | currency}}</td>
+            <td>
+                <button (click)="addToCart(airplane)" class="btn btn-success btn-sm"> Sepete Ekle</button>
+            </td>
+
+        </tr>
+    </tbody>
+
+</table>

@@ -1,0 +1,14 @@
+<li class="nav-item dropdown">
+    <a class="nav-link" href="#" id="navbarDropdown">
+        Sepet->
+    </a>
+    <h5 class="nav-link flex-row" *ngFor="let cartItem of cartItems">
+        {{cartItem.airplane.airplaneName}} 
+    <span class="badge bg-primary">
+        {{cartItem.quantity}}
+    </span> 
+    <span class="badge bg-warning" (click)="removeFromCart(cartItem.airplane)">Çıkar</span>   </h5>
+    
+    <a class="nav-link text-danger">Sepete Git-></a>
+    
+</li>
